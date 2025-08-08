@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
     <meta charset="UTF-8">
     <title>Sesame Street Fever - Album Links</title>
     <style>
+	@keyframes flashColors {
+  0% { background-color: pink; }
+  33% { background-color: yellow; }
+  66% { background-color: orange; }
+  100% { background-color: transparent; }
+}
+
+.flash-animation {
+  animation: flashColors 1.5s ease forwards;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#reactionMessage {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  z-index: 10000;
+  display: none;
+  user-select: none;
+}
+
         body {
             font-family: sans-serif;
             text-align: center;
@@ -36,6 +68,8 @@
 </head>
 
 <body>
+
+<div id="reactionMessage">Thanks for your reaction! 🎉</div>
     <h2 class="main-header">Album of the Month</h2>
     <h1>Sesame Street Fever</h1>
     <p>Choose your platform:</p>
@@ -45,5 +79,161 @@
     <div class="image-frame">
         <img src="background.png" alt="Sesame Street Fever Album Art">
     </div>
+	
+	<h2 style="margin-top: 50px;">How do you feel about this album?</h2>
+
+		<div id="reactions" style="display: flex; justify-content: center; gap: 15px; margin: 20px auto;">
+		  <button onclick="flashScreenWithMessage('Adore')"  id="adoreBtn" style="padding: 10px 20px; background: #ff4081; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😍 Adore (<span id="adoreCount">0</span>)</button>
+		  <button onclick="flashScreenWithMessage('Meh')" id="mehBtn" style="padding: 10px 20px; background: #ffca28; color: black; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😐 Meh (<span id="mehCount">0</span>)</button>
+		  <button onclick="flashScreenWithMessage('Bad')"id="badBtn" style="padding: 10px 20px; background: #ef5350; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😖 Bad (<span id="badCount">0</span>)</button>
+		</div>
+
+<h2>Comments</h2>
+<div id="commentBox" style="width: 400px; margin: 20px auto; font-family: sans-serif;">
+  <div id="commentList" style="height: 250px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; border-radius: 8px; background: #f9f9f9;"></div>
+
+  <form id="commentForm" style="margin-top: 10px; display: flex; flex-direction: column;">
+    <input id="usernameInput" type="text" placeholder="Your name..." required
+           style="padding: 8px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 5px;" />
+    <input id="commentInput" type="text" placeholder="Write a comment..." required
+           style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;" />
+    <button type="submit" style="margin-top: 5px; padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+  </form>
+  
+ 
+</div>
+ <script type="module">
+ function flashScreenWithMessage(message) {
+  const flash = document.createElement('div');
+  flash.className = 'flash-animation';
+  document.body.appendChild(flash);
+
+  const msg = document.getElementById('reactionMessage');
+  msg.textContent = message;
+  msg.style.display = 'block';
+
+  setTimeout(() => {
+    msg.style.display = 'none';
+    document.body.removeChild(flash);
+  }, 1500); // match animation duration
+}
+document.getElementById('adoreBtn').onclick = () => flashScreenWithMessage('Adore');
+document.getElementById('mehBtn').onclick = () => flashScreenWithMessage('Meh');
+document.getElementById('badBtn').onclick = () => flashScreenWithMessage('Bad');
+
+  // Firebase SDK v9 (Modular)
+  import { increment } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+	  apiKey: "AIzaSyCA8_Q_0W9Mm3a62z9hc8eELR9BBEV2eDw",
+	  authDomain: "albumofthemonth-39061.firebaseapp.com",
+	  projectId: "albumofthemonth-39061",
+	  storageBucket: "albumofthemonth-39061.firebasestorage.app",
+	  messagingSenderId: "454136393557",
+	  appId: "1:454136393557:web:323713330ce55e748c89dc",
+	  measurementId: "G-DC217JZC6R"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  const commentForm = document.getElementById("commentForm");
+  const commentInput = document.getElementById("commentInput");
+  const usernameInput = document.getElementById("usernameInput");
+  const commentList = document.getElementById("commentList");
+
+  // Load saved username
+  window.addEventListener("load", () => {
+    const savedName = localStorage.getItem("username");
+    if (savedName) usernameInput.value = savedName;
+  });
+
+  commentForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const text = commentInput.value.trim();
+    const username = usernameInput.value.trim();
+
+    if (!text || !username) return;
+
+    localStorage.setItem("username", username); // Save it
+
+    await addDoc(collection(db, "comments"), {
+      text,
+      username,
+      timestamp: serverTimestamp()
+    });
+
+    commentInput.value = "";
+  });
+
+  const q = query(collection(db, "comments"), orderBy("timestamp", "asc"));
+  onSnapshot(q, (snapshot) => {
+    commentList.innerHTML = "";
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const time = data.timestamp?.toDate().toLocaleTimeString() ?? '';
+      const user = data.username || "Anonymous";
+
+      const item = document.createElement("div");
+      item.style.padding = "8px";
+      item.style.margin = "5px 0";
+      item.style.borderRadius = "8px";
+      item.style.background = "#fff";
+      item.style.boxShadow = "0 1px 3px rgba(0,0,0,0.1)";
+      item.style.textAlign = "left";
+
+      item.innerHTML = `<strong>${user}</strong> <span style="font-size: 0.8em; color: #666;">${time}</span><br>${data.text}`;
+      commentList.appendChild(item);
+    });
+
+    // Auto scroll to bottom
+    commentList.scrollTop = commentList.scrollHeight;
+  });
+  
+  // REACT BUTTONS PART
+  import { doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+
+const reactionDocRef = doc(db, "reactions", "album1");
+
+// Initialize reaction doc if not exists
+async function initReactions() {
+  const snap = await getDoc(reactionDocRef);
+  if (!snap.exists()) {
+    await setDoc(reactionDocRef, {
+      adore: 0,
+      meh: 0,
+      bad: 0
+    });
+  }
+}
+initReactions();
+
+// Listen for real-time updates
+onSnapshot(reactionDocRef, (docSnap) => {
+  const data = docSnap.data();
+  document.getElementById("adoreCount").textContent = data.adore ?? 0;
+  document.getElementById("mehCount").textContent = data.meh ?? 0;
+  document.getElementById("badCount").textContent = data.bad ?? 0;
+});
+
+// Handlers for button clicks
+document.getElementById("adoreBtn").addEventListener("click", () => {
+  updateDoc(reactionDocRef, { adore: increment(1) });
+});
+document.getElementById("mehBtn").addEventListener("click", () => {
+  updateDoc(reactionDocRef, { meh: increment(1) });
+});
+document.getElementById("badBtn").addEventListener("click", () => {
+  updateDoc(reactionDocRef, { bad: increment(1) });
+});
+
+
+
+
+</script>
 </body>
 </html>
