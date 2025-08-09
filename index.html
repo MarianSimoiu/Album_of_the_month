@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
-    <meta charset="UTF-8">
-    <title>Sesame Street Fever - Album Links</title>
-    <style>
-	@keyframes flashColors {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sesame Street Fever - Album Links</title>
+<style>
+@keyframes flashColors {
   0% { background-color: pink; }
   33% { background-color: yellow; }
   66% { background-color: orange; }
@@ -36,72 +35,196 @@
   user-select: none;
 }
 
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            margin-top: 50px;
-            padding: 100px;
-        }
-        .main-header {
-            font-size: 3rem;       /* big size */
-            font-weight: 700;      /* bold */
-            margin-bottom: 20px;   /* space below */
-            text-transform: uppercase; /* optional, for emphasis */
-            letter-spacing: 2px;   /* subtle spacing */
-        }
-        .image-frame {
-            margin: 40px auto 0 auto;
-            width: 300px;
-            border: 4px solid #444;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-        }
-        .image-frame img {
-            max-width: 100%;
-            display: block;
-            margin: 0 auto;
-            border-radius: 4px;
-        }
-    </style>
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.main-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.image-frame {
+  margin: 40px auto 0 auto;
+  max-width: 300px;
+  width: 100%;
+  border: 4px solid #444;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+#reactions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+#reactions button {
+  flex: 1 1 auto;
+  min-width: 100px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#commentBox {
+  max-width: 90%;
+  width: 400px;
+  margin: 20px auto;
+}
+
+#commentList {
+  height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+#commentForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#commentForm input, #commentForm button {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#commentForm button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .main-header {
+    font-size: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #reactionMessage {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  #reactions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #reactions button {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  #commentList {
+    height: 200px;
+  }
+
+}
+
+.platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.platform-links a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.platform-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.spotify-btn {
+  background: linear-gradient(135deg, #1DB954, #17a24a);
+}
+
+.ytmusic-btn {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+  .platform-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .platform-links a {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+</style>
 </head>
-
 <body>
-
 <div id="reactionMessage">Thanks for your reaction! 🎉</div>
-    <h2 class="main-header">Album of the Month</h2>
-    <h1>Sesame Street Fever</h1>
-    <p>Choose your platform:</p>
-    <p><a href="https://open.spotify.com/album/0qmobJcPkvjFTucszTTpV0" target="_blank">🎵 Listen on Spotify</a></p>
-    <p><a href="https://music.youtube.com/playlist?list=OLAK5uy_lB960Xi34FT5foqWk4wDvfrBafAYCrMtc" target="_blank">📺 Listen on YouTube Music</a></p>
 
-    <div class="image-frame">
-        <img src="background.png" alt="Sesame Street Fever Album Art">
-    </div>
-	
-	<h2 style="margin-top: 50px;">How do you feel about this album?</h2>
+<h2 class="main-header">Album of the Month</h2>
+<h1>Sesame Street Fever</h1>
+<div class="platform-links">
+  <a href="https://open.spotify.com/album/0qmobJcPkvjFTucszTTpV0" target="_blank" class="spotify-btn">
+    🎵 Listen on Spotify
+  </a>
+  <a href="https://music.youtube.com/playlist?list=OLAK5uy_lB960Xi34FT5foqWk4wDvfrBafAYCrMtc" target="_blank" class="ytmusic-btn">
+    📺 Listen on YouTube Music
+  </a>
+</div>
+<div class="image-frame">
+  <img src="background.png" alt="Sesame Street Fever Album Art">
+</div>
 
-		<div id="reactions" style="display: flex; justify-content: center; gap: 15px; margin: 20px auto;">
-		  <button onclick="flashScreenWithMessage('Adore')"  id="adoreBtn" style="padding: 10px 20px; background: #ff4081; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😍 Adore (<span id="adoreCount">0</span>)</button>
-		  <button onclick="flashScreenWithMessage('Meh')" id="mehBtn" style="padding: 10px 20px; background: #ffca28; color: black; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😐 Meh (<span id="mehCount">0</span>)</button>
-		  <button onclick="flashScreenWithMessage('Bad')"id="badBtn" style="padding: 10px 20px; background: #ef5350; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 1.2em;">😖 Bad (<span id="badCount">0</span>)</button>
-		</div>
+<h2 style="margin-top: 50px;">How do you feel about this album?</h2>
+<div id="reactions">
+  <button style="background:#ff4081;color:white;">😍 Adore (<span id="adoreCount">0</span>)</button>
+  <button style="background:#ffca28;color:black;">😐 Meh (<span id="mehCount">0</span>)</button>
+  <button style="background:#ef5350;color:white;">😖 Bad (<span id="badCount">0</span>)</button>
+</div>
 
 <h2>Comments</h2>
-<div id="commentBox" style="width: 400px; margin: 20px auto; font-family: sans-serif;">
-  <div id="commentList" style="height: 250px; overflow-y: scroll; border: 1px solid #ccc; padding: 10px; border-radius: 8px; background: #f9f9f9;"></div>
-
-  <form id="commentForm" style="margin-top: 10px; display: flex; flex-direction: column;">
-    <input id="usernameInput" type="text" placeholder="Your name..." required
-           style="padding: 8px; margin-bottom: 5px; border: 1px solid #ccc; border-radius: 5px;" />
-    <input id="commentInput" type="text" placeholder="Write a comment..." required
-           style="padding: 8px; border: 1px solid #ccc; border-radius: 5px;" />
-    <button type="submit" style="margin-top: 5px; padding: 8px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+<div id="commentBox">
+  <div id="commentList"></div>
+  <form id="commentForm">
+    <input id="usernameInput" type="text" placeholder="Your name..." required />
+    <input id="commentInput" type="text" placeholder="Write a comment..." required />
+    <button type="submit">Send</button>
   </form>
-  
- 
 </div>
+
  <script type="module">
  function flashScreenWithMessage(message) {
   const flash = document.createElement('div');
