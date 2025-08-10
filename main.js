@@ -40,9 +40,9 @@ function flashScreenWithMessage(message) {
 }
 
 
-document.getElementById('adoreBtn').onclick = () => flashScreenWithMessage('Adore');
-document.getElementById('mehBtn').onclick = () => flashScreenWithMessage('Meh');
-document.getElementById('badBtn').onclick = () => flashScreenWithMessage('Bad');
+document.getElementById('adoreBtn').onclick = () => flashScreenWithMessage('Mozart would be proud. 🎼');
+document.getElementById('mehBtn').onclick = () => flashScreenWithMessage('Like elevator music, but with feelings. 🛗');
+document.getElementById('badBtn').onclick = () => flashScreenWithMessage('Sounds like my toaster having an existential crisis. 🍞');
 
 
 const app = initializeApp(firebaseConfig);
