@@ -1,1 +1,218 @@
+/* ...existing CSS from <style> block in index.html... */
+@keyframes flashColors {
+  0% { background-color: pink; }
+  33% { background-color: yellow; }
+  66% { background-color: orange; }
+  100% { background-color: transparent; }
+}
 
+.flash-animation {
+  animation: flashColors 1.5s ease forwards;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#reactionMessage {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.8);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  z-index: 10000;
+  display: none;
+  user-select: none;
+}
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
+
+.main-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.image-frame {
+  margin: 40px auto 0 auto;
+  max-width: 300px;
+  width: 100%;
+  border: 4px solid #444;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+}
+
+.image-frame img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+#reactions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+#reactions button {
+  flex: 1 1 auto;
+  min-width: 100px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+#commentBox {
+  max-width: 90%;
+  width: 400px;
+  margin: 20px auto;
+}
+
+#commentList {
+  height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+#commentForm {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+#commentForm input, #commentForm button {
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#commentForm button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .main-header {
+    font-size: 2rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+  #reactionMessage {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+  #reactions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  #reactions button {
+    width: 100%;
+    font-size: 1.1rem;
+  }
+  #commentList {
+    height: 200px;
+  }
+
+}
+
+.platform-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.platform-links a {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.platform-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.spotify-btn {
+  background: linear-gradient(135deg, #1DB954, #17a24a);
+}
+
+.ytmusic-btn {
+  background: linear-gradient(135deg, #ff0000, #cc0000);
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+  .platform-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .platform-links a {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+
+.user-info {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-radius: 24px;
+  padding: 10px 18px;
+  font-size: 1.1em;
+  z-index: 100;
+  gap: 10px;
+  min-width: 180px;
+  float: right;
+}
+.user-icon {
+  font-size: 2em;
+  color: #4a90e2;
+  margin-right: 8px;
+}
+.user-greeting {
+  color: #333;
+  font-weight: 500;
+}
+.user-name {
+  color: #4a90e2;
+  font-weight: bold;
+  margin-left: 6px;
+  font-size: 1.1em;
+}
