@@ -14,6 +14,145 @@ const usernames = [
    "Sudo MakeMeASandwich", "Syntax Terror", "Nacho Problem"
 ];
 
+const trash = [
+   "Sounds like my toaster having an existential crisis. 🍞",
+  "😖 Sounds like my smoke detector's angry cousin.",
+  "🎺 My ears tried to file a complaint.",
+  "💀 I think I just lost a braincell. Thank you.",
+  "🔊 My dog is now deaf. Thanks for that.",
+  "🌪️ This feels like musical chaos in a blender.",
+  "😵 Nope. Not even a little. Nope.",
+  "🚪 Let me just show myself out...",
+  "👻 Haunted sound—literally haunting me now.",
+  "🎪 This is peak 'what were they thinking' energy.",
+  "⚠️ Warning: Ears may not recover. 🆘",
+  "📱 Even Spotify's AutoTune feature quit.",
+  "🧠 I can feel my IQ dropping with each note.",
+  "😱 Plot twist: It gets worse.",
+  "💔 My heart breaks for this album. Literally.",
+  "🗑️ Even the trash can said 'No thank you.'",
+  "🎓 This is what they play in music torture rooms.",
+  "🧪 This is the control group for 'What NOT to do.'",
+  "🚨 My ears are filing a lawsuit. 📋",
+  "🎯 Missed the mark. By a lot.",
+  "🔥 Not the good kind of fire. More like a dumpster fire.",
+  "🎸 Someone needs to return that guitar.",
+  "📉 The graph of my enjoyment just went to zero.",
+  "🌋 Eruption of regret detected.",
+  "⚡ Struck by lightning of bad taste.",
+  "💥 This exploded... not in a good way.",
+  "🦠 Contagious level of bad. Stay away.",
+  "🧟 Zombie mode activated from hearing this.",
+  "🎭 Tragic, not tragic-beautiful. Just tragic.",
+  "🚂 Derailed train of musical expectations.",
+  "🕷️ Got caught in a web of sound... a bad web.",
+  "🧲 Repelling listeners since day one.",
+  "🪤 Trap album—literally trapping my ears.",
+  "💉 Need a cure for this album.",
+  "🎨 Picasso would be confused. Then angry.",
+  "📞 Your musical taste called... it's disappearing.",
+  "🧬 This DNA tested as 'absolutely not.'",
+  "🎯 The only target here is my patience (now gone).",
+  "🌑 Darker than a black hole of sound.",
+  "⛓️ Chained to this regret for life.",
+  "🪓 Slicing through my eardrums like a hot knife.",
+  "🧨 Explosive disappointment incoming.",
+  "🎪 Circus of horrors: the album.",
+  "🌀 Swirling vortex of acoustic nightmare.",
+  "☢️ Radioactive levels of bad.",
+  "🧲 Repels listeners at maximum strength.",
+  "🚀 This crashed and burned on the launchpad.",
+  "🎢 A rollercoaster to regret town.",
+  "🧛 Vampiric energy—sucking the joy out of the room."
+]
+
+const lit = [
+   "Mozart would be proud. 🎼",
+  "🔥 That's on fire! Fleet Foxes just dropped some heat!",
+  "🎉 You just made the album even cooler!",
+  "🌟 What a hot take! The band is surely blushing now.",
+  "🥇 Your taste is elite!",
+  "🚀 Blasting off to good vibes!",
+  "😎 Sunglasses on for this brilliance.",
+  "🤣 Too good! Can't stop grooving.",
+  "💃 Fancy a dance? This is album gold.",
+  "🐦 Even the foxes are grooving.",
+  "🏄 You're riding the ultimate wave of music.",
+  "🎤 Mic drop! You know what's up.",
+  "🍕 This album is as good as pizza.",
+  "🦊 The fox approves of your vibes!",
+  "🍀 Lucky pick! Instant good mood unlocked.",
+  "🙌 High five through the screen!",
+  "🤩 Awestruck reaction. The crowd goes wild!",
+  "🥳 Let the party begin!",
+  "✨ You've awakened the music gods.",
+  "👑 Royalty confirmed. Crown acquired.",
+  "🎸 *Chef's kiss* for this musical masterpiece.",
+  "🌈 This is rainbow-level amazing.",
+  "💎 Diamonds can't compete with your taste.",
+  "🚁 Taking vibes to the next level.",
+  "⚡ Electric energy detected!",
+  "🎯 Bullseye! Perfect taste incoming.",
+  "🏆 Hall of fame material right here.",
+  "🌟 You just made the album cooler than it already was.",
+  "🔮 I see a future of good music choices for you.",
+  "🎊 Confetti cannons are firing in your honor!",
+  "💫 Stellar choice, my friend.",
+  "🚢 Smooth sailing through the best vibes.",
+  "🎭 Oscar-worthy reaction to this album.",
+  "🌺 Blooming with musical appreciation here.",
+  "🎪 Step right up to the greatest album show!",
+  "⭐ Five stars, A+, 10/10, perfection.",
+  "🛸 Aliens confirm: this is peak Earth music.",
+  "🎓 You graduated with honors in good taste.",
+  "🌅 Beautiful sunrise of music appreciation.",
+  "💝 Love at first listen confirmed!"
+]
+
+const meh = [
+   "Like elevator music, but with feelings. 🛗",
+  "😏 It's giving... mid. Very mid energy.",
+  "🤐 I see you're playing it safe. Respect.",
+  "👀 This one's for when you're 'meh' about it.",
+  "🙃 Not bad, not great—just *there*.",
+  "🎻 The world's tiniest violin plays for you.",
+  "😑 Shrug simulator activated. 💤",
+  "📻 Fine choice for a dentist waiting room.",
+  "🌧️ It's like background music for your Tuesday.",
+  "🍚 As vanilla as it gets, but hey, vanilla's fine.",
+  "🎯 Participation trophy vibes. Nice try!",
+  "😴 This one put me to sleep... in a good way? 🤔",
+  "🧊 Lukewarm take detected.",
+  "🚗 Solid roadtrip album material.",
+  "👎 Not a villain, just... forgettable.",
+  "🎲 Roll the dice on this one.",
+  "🤷 Your reaction was basically a shrug emoji.",
+  "📝 Added to the 'maybe later' playlist. 😌",
+  "🌫️ Vibes are... *checks notes* ...meh.",
+  "🪜 Heard it, didn't hate it, moving on.",
+  "📺 Perfect for background TV watching.",
+  "☕ It's like coffee without the caffeine boost.",
+  "🧩 Just another piece of the puzzle.",
+  "🛑 Stopped just short of great.",
+  "⏸️ Pause button energy right here.",
+  "🎢 Not quite a roller coaster, more of a merry-go-round.",
+  "🌊 Waves are calm today, very calm.",
+  "🎨 The artist tried. I'll give them that.",
+  "📊 Rating: middle of the graph.",
+  "🚶 Walking through music territory here.",
+  "🎪 Good for background noise at a party.",
+  "🧦 Cozy, like a warm sock. Just... a sock.",
+  "🏃 Didn't run from it, but didn't chase it either.",
+  "🌤️ Partly cloudy with a chance of 'meh'.",
+  "🎯 Hit the target, but not the bullseye.",
+  "📚 It's a chapter, not a novel.",
+  "🐢 Moving at a steady, unremarkable pace.",
+  "💾 Saved to 'revisit never' folder.",
+  "🚲 Pedaling along without much excitement.",
+  "🌾 Growing on me... very, very slowly.",
+  "🎬 Plot twist: there wasn't one."
+]
+
 const firebaseConfig = {
   apiKey: "AIzaSyCA8_Q_0W9Mm3a62z9hc8eELR9BBEV2eDw",
   authDomain: "albumofthemonth-39061.firebaseapp.com",
@@ -40,9 +179,21 @@ function flashScreenWithMessage(message) {
 }
 
 
-document.getElementById('adoreBtn').onclick = () => flashScreenWithMessage('Mozart would be proud. 🎼');
-document.getElementById('mehBtn').onclick = () => flashScreenWithMessage('Like elevator music, but with feelings. 🛗');
-document.getElementById('badBtn').onclick = () => flashScreenWithMessage('Sounds like my toaster having an existential crisis. 🍞');
+adoreBtn.addEventListener('click', () => {
+  const msg = lit[Math.floor(Math.random() * lit.length)];
+  document.getElementById('reactionMessage').textContent = msg;
+  document.getElementById('reactionMessage').style.display = "block";
+});
+mehBtn.addEventListener('click', () => {
+  const msg = meh[Math.floor(Math.random() * meh.length)];
+  document.getElementById('reactionMessage').textContent = msg;
+  document.getElementById('reactionMessage').style.display = "block";
+});
+badBtn.addEventListener('click', () => {
+  const msg = bad[Math.floor(Math.random() * bad.length)];
+  document.getElementById('reactionMessage').textContent = msg;
+  document.getElementById('reactionMessage').style.display = "block";
+});
 
 
 const app = initializeApp(firebaseConfig);
