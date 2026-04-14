@@ -644,12 +644,22 @@ function isValidYoutubeMusicUrl(url) {
   if (!url) return true; // Optional field
   try {
     const urlObj = new URL(url);
-    // MUST be from music.youtube.com (not regular youtube.com)
-    // AND must have /browse/ path for albums
-    const isYTMusic = urlObj.hostname === "music.youtube.com" || urlObj.hostname.endsWith(".music.youtube.com");
-    const hasAlbumPath = urlObj.pathname.includes("/browse/");
+    // Check for music.youtube.com domain (main or subdomains)
+    const isYTMusic = urlObj.hostname === "music.youtube.com" || urlObj.hostname.includes("music.youtube.com");
+    // Check for /browse/ path (albums are at /browse/ALBUM_ID)
+    const hasAlbumPath = urlObj.pathname.includes("/playlist/");
+    
+    console.log("YouTube Music URL Validation Debug:", {
+      url,
+      hostname: urlObj.hostname,
+      pathname: urlObj.pathname,
+      isYTMusic,
+      hasAlbumPath,
+      result: isYTMusic && hasAlbumPath
+    });
     return isYTMusic && hasAlbumPath;
   } catch (e) {
+    console.log("YouTube Music URL Parse Error:", { url, error: e.message });
     return false;
   }
 }
