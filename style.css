@@ -118,6 +118,120 @@ body {
   font-size: 1.15em;
 }
 
+/* Listeners Badge */
+.listeners-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0 25px 0;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.1), rgba(74, 144, 226, 0.1));
+  border: 2px solid rgba(29, 185, 84, 0.3);
+  border-radius: 25px;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.listeners-badge:hover {
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.15), rgba(74, 144, 226, 0.15));
+  border-color: rgba(29, 185, 84, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
+}
+
+.listeners-icon {
+  font-size: 1.3em;
+  animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.listeners-label {
+  color: #666;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.listeners-count {
+  color: #1DB954;
+  font-weight: 800;
+  font-size: 1.2em;
+  min-width: 30px;
+}
+
+/* Listeners Badge */
+.listeners-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 15px 0 25px 0;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.1), rgba(74, 144, 226, 0.1));
+  border: 2px solid rgba(29, 185, 84, 0.3);
+  border-radius: 25px;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  animation: fadeInScale 0.5s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.listeners-badge:hover {
+  background: linear-gradient(135deg, rgba(29, 185, 84, 0.15), rgba(74, 144, 226, 0.15));
+  border-color: rgba(29, 185, 84, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.2);
+}
+
+.listeners-icon {
+  font-size: 1.3em;
+  animation: wiggle 2s infinite;
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.listeners-label {
+  color: #666;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+
+.listeners-count {
+  color: #1DB954;
+  font-weight: 800;
+  font-size: 1.2em;
+  min-width: 30px;
+}
+
 .image-frame {
   margin: 40px auto 0 auto;
   max-width: 300px;
@@ -227,6 +341,20 @@ body {
   #albumArtist {
     font-size: 1.05em;
   }
+
+  .listeners-badge {
+    margin: 12px 0 18px 0;
+    padding: 10px 16px;
+    font-size: 0.85em;
+  }
+
+  .listeners-icon {
+    font-size: 1.1em;
+  }
+
+  .listeners-count {
+    font-size: 1.1em;
+  }
   
   #reactionMessage {
     font-size: 1rem;
@@ -294,7 +422,7 @@ body {
 .user-info {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1rem;
   display: flex;
   align-items: center;
   gap: 8px;
