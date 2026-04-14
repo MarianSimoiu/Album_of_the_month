@@ -639,13 +639,16 @@ function isValidSpotifyUrl(url) {
   }
 }
 
-// Validate YouTube Music URL
+// Validate YouTube Music URL (specifically for music.youtube.com, not regular YouTube)
 function isValidYoutubeMusicUrl(url) {
   if (!url) return true; // Optional field
   try {
     const urlObj = new URL(url);
-    // Check if it's from YouTube Music domain and contains /browse/
-    return urlObj.hostname.includes("music.youtube.com") && urlObj.pathname.includes("/browse/");
+    // MUST be from music.youtube.com (not regular youtube.com)
+    // AND must have /browse/ path for albums
+    const isYTMusic = urlObj.hostname === "music.youtube.com" || urlObj.hostname.endsWith(".music.youtube.com");
+    const hasAlbumPath = urlObj.pathname.includes("/browse/");
+    return isYTMusic && hasAlbumPath;
   } catch (e) {
     return false;
   }
