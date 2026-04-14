@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="pageTitle">🎵 Album of the Month | Maruja</title>
+  <title id="pageTitle">🎵 Album of the Month </title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div id="reactionMessage">Thanks for your reaction! 🎉</div>
 
-  <div class="user-info" style="float:right">
+  <div id="userInfoBox" class="user-info">
     <span class="user-icon">👤</span>
-    <span class="user-greeting">Welcome,</span>
     <span id="username" class="user-name">Loading...</span>
-    <button id="adminBtn" style="background: #ff6b00; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; margin-left: 15px; display: none;">⚙️ Admin</button>
+    <button id="adminBtn" style="background: #ff6b00; color: white; border: none; padding: 4px 8px; border-radius: 3px; cursor: pointer; font-weight: bold; margin-left: 8px; display: none; font-size: 0.85em;">⚙️ Admin</button>
   </div>
-  <h2 class="main-header" style="margin-top: 64px;">Album of the Week</h2>
-  <h1 id="albumDisplay">Loading...</h1>
+
+  <h2 class="main-header">Album of the Week</h2>
+  <div class="album-title-section">
+    <h1 id="albumDisplay">Loading...</h1>
+    <p class="album-artist-label"><span class="artist-prefix">by</span> <span id="albumArtist">Loading...</span></p>
+  </div>
   <div class="platform-links">
     <a id="spotifyLink" href="#" target="_blank" class="spotify-btn" style="display: none;">
       🎵 Listen on Spotify
@@ -32,17 +35,37 @@
     <img id="albumCoverImage" src="background.jpg" alt="album Album Art">
   </div>
 
-  <h2 style="margin-top: 50px;">How do you feel about <span id="featuredAlbumDisplay">this album</span>?</h2>
-  <div id="reactions">
-    <button id="adoreBtn" style="background:#fb2626;color:white;">🔥 Lit (<span id="adoreCount">0</span>)</button>
-    <button id="mehBtn" style="background:#4082ff;color:white;">👌 Meh (<span id="mehCount">0</span>)</button>
-    <button id="badBtn" style="background:#1DB954;color:white;">😖 Bad (<span id="badCount">0</span>)</button>
+  <div class="featured-album-reactions-section">
+    <div class="reactions-header">
+      <h2>How do you feel about <span id="featuredAlbumDisplay">this album</span>?</h2>
+      <p class="reactions-subtext">Share your opinion with the community</p>
+    </div>
+    <div id="reactions">
+      <button id="adoreBtn" class="reaction-btn lit-btn" title="This album is fire!">
+        <span class="reaction-emoji">🔥</span>
+        <span class="reaction-text">Lit</span>
+        <span class="reaction-count">(<span id="adoreCount">0</span>)</span>
+      </button>
+      <button id="mehBtn" class="reaction-btn meh-btn" title="It's okay">
+        <span class="reaction-emoji">👌</span>
+        <span class="reaction-text">Meh</span>
+        <span class="reaction-count">(<span id="mehCount">0</span>)</span>
+      </button>
+      <button id="badBtn" class="reaction-btn bad-btn" title="Not my cup of tea">
+        <span class="reaction-emoji">😖</span>
+        <span class="reaction-text">Bad</span>
+        <span class="reaction-count">(<span id="badCount">0</span>)</span>
+      </button>
+    </div>
   </div>
 
   <h2 style="margin-top: 50px; display: flex; align-items: center; gap: 10px; justify-content: center;">
     Submit Your Album Pick
     <span style="background: linear-gradient(135deg, #ff6b6b, #ff9999); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7em; font-weight: bold; animation: pulse 2s infinite;">✨ NEW</span>
   </h2>
+  <p style="margin: 10px 0 15px; font-size: 0.9em; color: #666;">
+    Submit a new album to be voted on for <strong>next week</strong>
+  </p>
   <div id="countdownDisplay" style="background: linear-gradient(135deg, #4082ff, #66a3ff); color: white; padding: 12px 24px; border-radius: 8px; text-align: center; font-weight: bold; font-size: 1.1em; margin-bottom: 15px; max-width: 400px; margin-left: auto; margin-right: auto;">
     Days Left: <span id="countdownText">Loading...</span>
   </div>
@@ -89,14 +112,20 @@
       </div>
       <div style="margin-bottom: 15px;">
         <label for="youtubeMusicUrl" style="display: block; margin-bottom: 5px; font-weight: bold;">YouTube Music Album Link</label>
-        <input id="youtubeMusicUrl" type="url" placeholder="e.g., https://music.youtube.com/browse/..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;" />
+        <input id="youtubeMusicUrl" type="url" placeholder="e.g., https://music.youtube.com/playlist..." style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box;" />
         <small id="youtubeValidation" style="color: #666; display: none;"></small>
       </div>
       <button type="submit" style="background: #4082ff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Submit Album</button>
     </form>
   </div>
 
-  <h2 style="margin-top: 50px;">This Week's Submissions</h2>
+  <div style="margin-top: 50px; padding: 20px; background: linear-gradient(135deg, #fff5e6, #ffe6f0); border-radius: 12px; border-left: 6px solid #ff6b00; margin-bottom: 30px;">
+    <h2 style="margin-top: 0; margin-bottom: 10px;">🗳️ Vote for Next Week's Album</h2>
+    <p style="margin: 0; font-size: 0.95em; color: #333;">
+      <strong>Vote on the albums below!</strong> The one with the most votes will become next week's featured album. You can change your vote anytime before Sunday ends.
+    </p>
+  </div>
+
   <div id="weeklyAlbumsContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px; margin-bottom: 30px;">
     <!-- Weekly albums will be displayed here -->
   </div>
