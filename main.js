@@ -529,7 +529,7 @@ document.getElementById("youtubeMusicUrl").addEventListener("input", (e) => {
     validationMsg.style.color = "#1DB954";
     validationMsg.style.display = "block";
   } else {
-    validationMsg.textContent = "✗ Invalid YouTube Music URL (must be from music.youtube.com/browse/...)";
+    validationMsg.textContent = "✗ Invalid YouTube Music URL (must be from music.youtube.com/playlist...)";
     validationMsg.style.color = "#d32f2f";
     validationMsg.style.display = "block";
   }
@@ -599,8 +599,11 @@ function updateCountdown() {
 // Update featured album display with name, artist, links, and image
 function updateFeaturedAlbum(album) {
   // Update title and heading
-  document.getElementById("pageTitle").textContent = `🎵 ${album.albumName} by ${album.artistName} | Maruja`;
-  document.getElementById("albumDisplay").textContent = `${album.albumName} - ${album.artistName}`;
+  const titleText = `🎵 ${album.albumName} - ${album.artistName}`;
+  document.title = titleText;
+  document.getElementById("pageTitle").textContent = titleText;
+  document.getElementById("albumDisplay").textContent = album.albumName;
+  document.getElementById("albumArtist").textContent = album.artistName;
   document.getElementById("featuredAlbumDisplay").textContent = `${album.albumName}`;
   
   // Update album cover image
@@ -647,7 +650,7 @@ function isValidYoutubeMusicUrl(url) {
     // Check for music.youtube.com domain (main or subdomains)
     const isYTMusic = urlObj.hostname === "music.youtube.com" || urlObj.hostname.includes("music.youtube.com");
     // Check for /browse/ path (albums are at /browse/ALBUM_ID)
-    const hasAlbumPath = urlObj.pathname.includes("/playlist/");
+    const hasAlbumPath = urlObj.pathname.includes("/playlist");
     
     console.log("YouTube Music URL Validation Debug:", {
       url,
@@ -699,7 +702,7 @@ albumForm.addEventListener("submit", async (e) => {
   
   // Validate YouTube Music URL if provided
   if (youtubeMusicUrl && !isValidYoutubeMusicUrl(youtubeMusicUrl)) {
-    alert("Invalid YouTube Music URL. Please provide a valid YouTube Music album link (e.g., https://music.youtube.com/browse/...)");
+    alert("Invalid YouTube Music URL. Please provide a valid YouTube Music album link (e.g., https://music.youtube.com/playlist...)");
     return;
   }
   
