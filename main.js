@@ -190,7 +190,7 @@ mehBtn.addEventListener('click', () => {
   document.getElementById('reactionMessage').style.display = "block";
 });
 badBtn.addEventListener('click', () => {
-  const msg = bad[Math.floor(Math.random() * bad.length)];
+  const msg = trash[Math.floor(Math.random() * trash.length)];
   document.getElementById('reactionMessage').textContent = msg;
   document.getElementById('reactionMessage').style.display = "block";
 });
@@ -563,32 +563,37 @@ function getCurrentWeekId() {
 
 // Calculate countdown to end of week (Sunday 11:59:59 PM)
 function updateCountdown() {
-  const now = new Date();
-  const currentDay = now.getDay(); // 0 = Sunday, 6 = Saturday
-  
-  // Calculate days until next Sunday
-  const daysUntilSunday = (7 - currentDay) % 7 || 7; // If today is Sunday, 7 days
-  
-  // Create target date (Sunday 11:59:59 PM)
-  const targetDate = new Date(now);
-  targetDate.setDate(targetDate.getDate() + daysUntilSunday);
-  targetDate.setHours(23, 59, 59, 0);
-  
-  // Calculate difference
-  const diff = targetDate - now;
-  
-  if (diff <= 0) {
-    document.getElementById("countdownText").textContent = "0d 0h 0m 0s";
-    return;
+  try {
+    const now = new Date();
+    const currentDay = now.getDay(); // 0 = Sunday, 6 = Saturday
+    
+    // Calculate days until next Sunday
+    const daysUntilSunday = (7 - currentDay) % 7 || 7; // If today is Sunday, 7 days
+    
+    // Create target date (Sunday 11:59:59 PM)
+    const targetDate = new Date(now);
+    targetDate.setDate(targetDate.getDate() + daysUntilSunday);
+    targetDate.setHours(23, 59, 59, 0);
+    
+    // Calculate difference
+    const diff = targetDate - now;
+    
+    if (diff <= 0) {
+      document.getElementById("countdownText").textContent = "0d 0h 0m 0s";
+      return;
+    }
+    
+    // Calculate days, hours, minutes, seconds
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    document.getElementById("countdownText").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+  } catch (error) {
+    console.error("Error updating countdown:", error);
+    document.getElementById("countdownText").textContent = "Error";
   }
-  
-  // Calculate days, hours, minutes, seconds
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-  
-  document.getElementById("countdownText").textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
 // Update featured album display with name, artist, links, and image
@@ -1033,8 +1038,12 @@ async function setFeaturedAlbum(albumId, albumData) {
 // ========================================== END ADMIN PANEL ==========================================
 
 // Initialize countdown timer on page load
-updateCountdown();
-setInterval(updateCountdown, 1000); // Update every second
+if (document.getElementById("countdownText")) {
+  updateCountdown();
+  setInterval(updateCountdown, 1000); // Update every second
+} else {
+  console.error("Countdown element not found in DOM");
+}
 
 // Show admin button if already authenticated
 showAdminBtn();
