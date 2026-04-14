@@ -308,7 +308,7 @@ initUniqueListeners();
 // Show unique listeners count (optional, add an element in HTML if you want to display)
 onSnapshot(uniqueListenersRef, (docSnap) => {
   if (docSnap.exists() && document.getElementById("uniqueListeners")) {
-    document.getElementById("uniqueListeners").textContent = `Unique Listeners: ${docSnap.data().count}`;
+    document.getElementById("uniqueListeners").textContent = docSnap.data().count;
   }
 });
 
